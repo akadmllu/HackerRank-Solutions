@@ -6,12 +6,17 @@ For example, arr = [1,3,5,7,9]. Our minimum sum is 1 + 3 + 5 + 7 = 16 and our ma
 We would print
 16 24
 */
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
 
-import java.util.Scanner;
+public class Solution {
 
-public class MaxAndMinSum {
-
-    public void merge(int[] arr, int jLeft, int jMid ,int jRight){
+    public static void merge(int[] arr, int jLeft, int jMid ,int jRight){
         int n1 = jMid - jLeft + 1;
         int n2 = jRight - jMid;
 
@@ -19,10 +24,10 @@ public class MaxAndMinSum {
         int[] arrRight = new int[n2];
 
         for(int i = 0 ; i < n1 ; i++){
-            arrLeft = arr[jLeft + i];
+            arrLeft[i] = arr[jLeft + i];
         }
         for(int j = 0 ; j < n2 ; j++){
-            arrRight = arr[jMid + j + 1];
+            arrRight[j] = arr[jMid + j + 1];
         }
         int i=0,j=0,k=jLeft;
         while(i < n1 && j < n2){
@@ -30,34 +35,34 @@ public class MaxAndMinSum {
                 arr[k++] = arrLeft[i++];
             }
             else{
-                arr[k++] = arrRight[j++]
+                arr[k++] = arrRight[j++];
             }
         }
         while(i < n1){
             arr[k++] = arrLeft[i++];
         }
         while(j < n2){
-            arr[k++] = arrRight[j++]
+            arr[k++] = arrRight[j++];
         }
     }
 
-    public void mergeSort(int[] arr, int jLeft, int jRight){
+    public static void mergeSort(int[] arr, int jLeft, int jRight){
         if(jLeft < jRight){
-            int jMid = jLeft + (jRight-left)/2;
-            MergeSort(arr,jLeft,jMid);
-            MergeSort(arr,jMid+1,jRight);
-            Merge(arr,jLeft,jMid,jRight);
+            int jMid = jLeft + (jRight-jLeft)/2;
+            mergeSort(arr,jLeft,jMid);
+            mergeSort(arr,jMid+1,jRight);
+            merge(arr,jLeft,jMid,jRight);
         }
     }
 
-    public int[] performMergesort(int[] arr){
-        mergeSort(arr,0,arr.length);
+    public static int[] performMergesort(int[] arr){
+        mergeSort(arr,0,arr.length-1);
         return arr;
     }
 
     // Complete the miniMaxSum function below.
     static void miniMaxSum(int[] arr) {
-        int arrSorted = performMergeSort(arr);
+        int[] arrSorted = performMergesort(arr);
         long jMinSum = 0,jMaxSum = 0;
         for(int i = 0 ; i < arrSorted.length ; i++){
             if( i < arrSorted.length - 1){
@@ -67,7 +72,7 @@ public class MaxAndMinSum {
                 jMaxSum += arrSorted[i];
             }
         }
-        System.out.println(jMinSum + "  " + jMaxSum)
+        System.out.println(jMinSum + " " + jMaxSum);
     }
 
     private static final Scanner scanner = new Scanner(System.in);

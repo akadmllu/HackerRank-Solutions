@@ -6,7 +6,6 @@ Your task is to find out how many candles she can successfully blow out.
 For example, if your niece is turning 4 years old, and the cake will have 4 candles of height 4, 4, 1, 3 
 she will be able to blow out 2 candles successfully, since the tallest candles are of height 4 and there are 2 such candles.
 */
-
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -15,7 +14,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-public class BirthdayCakeCandles {
+public class Solution {
 
     public static void merge(int[] arr, int jLeft, int jMid ,int jRight){
         int n1 = jMid - jLeft + 1;
@@ -78,7 +77,7 @@ public class BirthdayCakeCandles {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int arCount = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -95,10 +94,10 @@ public class BirthdayCakeCandles {
 
         int result = birthdayCakeCandles(ar);
 
-        // bufferedWriter.write(String.valueOf(result));
-        // bufferedWriter.newLine();
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
 
-        // bufferedWriter.close();
+        bufferedWriter.close();
 
         scanner.close();
     }
